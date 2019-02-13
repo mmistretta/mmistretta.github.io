@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Amateur Consumption</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="assets/js/jquery.min.js"></script>
+        <script>
+            $(function(){
+                	$("#header").load("fragments/header.html");
+					$("#menu").load("fragments/menu.html");
+					$("#footer").load("fragments/footer.html");
+					$("#about").load("fragments/aboutus.html");
+					$("#posts").load("fragments/posts.html");
+					$("#mini-posts").load("fragments/mini-posts.html");
+           	 	});
+        </script>
+         <script type= "text/javascript">
+        	function getYouTubeInfo() {
+                $.ajax({
+                		url: "https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.commentThreads.list?part=snippet,replies&videoId=K54EtGdTZcA&alt=json",
+                        //url: "http://gdata.youtube.com/feeds/api/videos/<?php echo $_GET['v']; ?>?v=2&alt=json",
+                        dataType: "jsonp",
+                        success: function (data) { parseresults(data); }
+                });
+        	}
+        	function parseresults(data) {
+                var title = data.entry.title.$t;
+                var description = data.entry.media$group.media$description.$t;
+                var viewcount = data.entry.yt$statistics.viewCount;
+                var author = data.entry.author[0].name.$t;
+                $('#title').html(title);
+                $('#description').html('<b>Description</b>: ' + description);
+                $('#extrainfo').html('<b>Author</b>: ' + author + '<br/><b>Views</b>: ' + viewcount);
+                getComments(data.entry.gd$comments.gd$feedLink.href + '&max-results=50&alt=json', 1);
+        	}
+
+        	function getComments(commentsURL, startIndex) {
+                $.ajax({
+                        url: commentsURL + '&start-index=' + startIndex,
+                        dataType: "jsonp",
+                        success: function (data) {
+                        $.each(data.feed.entry, function(key, val) {
+                                $('#comments').append('<br/>Author: ' + val.author[0].name.$t + ', Comment: ' + val.content.$t);
+                        });
+                        if ($(data.feed.entry).size() == 50) { getComments(commentsURL, startIndex + 50); }
+                        }
+                });
+        	}
+
+        	$(document).ready(function () {
+                getYouTubeInfo();
+        	});
+        </script>
+	</head>
+	<body class="single is-preload">
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Header -->
+			<header id="header"></header>
+			<!-- Menu -->
+			<section id="menu">	</section>
+			<!-- Main -->
+			<div id="main">
+				<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2><a href="#">Cheap $ Vs. Expensive $$$ Wine - Chianti</a></h2>
+						</div>
+						<div class="meta">
+							<time class="published" datetime="2019-02-12">February 12, 2019</time>
+							<a href="#" class="author"><span class="name">Amateur Consumption</span><img src="images/AC.png" alt="" /></a>
+						</div>
+					</header>
+					<p>In this video we kick off a new series comparing cheap to expensive wine!  In this video we compare a $4 bottle of Chianti to a$15 bottle. Watch to find out which one comes out on top!</p>
+					<div id="title" style="color: #dddddd">Could not find a title</div><br/>
+                	<iframe width="560" height="315" src="https://www.youtube.com/embed/K54EtGdTZcA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                	<br/><br/>
+                	<div id="description" style="width:400px; background-color: #dddddd; font-size:10px; text-align:left;">Could not find a description</div>
+                	<div id="extrainfo" style="width:400px; background-color: #dddddd; font-size:10px; text-align:left;">Could not find extra information</div>
+                	<div id="comments" style="width:400px; background-color: #dddddd; font-size:10px; text-align:left;">Could not find comments</div>
+					<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/K54EtGdTZcA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+					<footer>
+						<ul class="stats">
+							<li><a href="#">General</a></li>
+							<li><a href="#" class="icon fa-heart">28</a></li>
+							<li><a href="#" class="icon fa-comment">128</a></li>
+						</ul>
+					</footer>
+				</article>
+			</div>
+			<!-- Footer -->
+			<section id="footer"></section>
+		</div>
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
