@@ -17,6 +17,14 @@
 					$("#mini-posts").load("fragments/mini-posts.html");
            	 	});
         	</script>
+        	<script src="http://code.jquery.com/jquery-latest.js"></script>
+			<script src="assets/js/jquery.easyPaginate.js">
+				$('#easyPaginate').easyPaginate({
+    				paginateElement: 'article',
+    				elementsPerPage: 3,
+    				effect: 'climb'
+				});
+			</script>
 		</head>
 		<body class="is-preload">
 			<!-- Wrapper -->
@@ -26,7 +34,7 @@
 				<!-- Menu -->
 				<section id="menu"></section>
 				<!-- Main -->
-				<div id="main">
+				<div id="main easyPaginate">
 					<!-- Post -->
 					<article class="post">
 						<header>
@@ -54,7 +62,7 @@
 						</footer>
 					</article>
 					<!-- Post -->
-					<article class="post">
+				<article class="post">
 					<header>
 						<div class="title">
                             <h2><a href="#">Valpolicella</a></h2>
@@ -103,6 +111,51 @@
 						</ul>
 					</footer>
 				</article>
+				<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2><a href="wines-orvietoclassico.html">Orvieto Classico</a></h2>
+							<p>The White Wine Everyone Should Try</p>
+						</div>
+						<div class="meta">
+							<time class="published" datetime="2019-02-13">February 13, 2019</time>
+							<a href="#" class="author"><span class="name">Amateur Consumption</span><img src="images/AC.jpg" alt="" /></a>
+						</div>
+					</header>
+					<a href="wines-orvietoclassico.html" class="image featured"><img src="images/wines/orvieto.jpg" alt="" /></a>
+					<p>Have you ever struggled to pair your food with a white wine?  Do you find some wines too dry, some too sweet, and struggle to find the perfect balance in one? </p>
+					<footer>
+						<ul class="actions">
+							<li><a href="wines-orvietoclassico.html" class="button large">Continue Reading</a></li>
+						</ul>
+					</footer>
+				</article>
+				<!-- Post -->
+				<article class="post">
+					<header>
+						<div class="title">
+							<h2><a href="wineries-justin.html">Justin</a></h2>
+							<p>Napa Quality Cabernet For 1/3 The Cost</p>
+						</div>
+						<div class="meta">
+							<time class="published" datetime="2019-02-13">February 13, 2019</time>
+							<a href="#" class="author"><span class="name">Amateur Consumption</span><img src="images/AC.png" alt="" /></a>
+						</div>
+					</header>
+					<a href="wineries-justin.html" class="image featured"><img src="images/wineries/justin.jpg" alt="" /></a>
+					<p>The first time I tasted Justin Cabernet Sauvignon I was blown away at the quality for the price.  The basic Cab runs between $20 and $25 a bottle, a steal for the quality. It quickly became a bottle I picked up everytime I saw it at Costco and I often choose to open at my parent’s house when visiting. Located in Paso Robles, the Justin Winery has been making wine since they planted their first vineyard in 1981.</p>
+					<footer>
+						<ul class="actions">
+							<li><a href="wineries-justin.html" class="button large">Continue Reading</a></li>
+						</ul>
+					</footer>
+				</article>
+				<!-- Pagination -->
+				<ul class="actions pagination">
+					<li><a href="" class="disabled button large previous">Previous Page</a></li>
+					<li><a href="#" class="button large next">Next Page</a></li>
+				</ul>
 				</div>
 
 				<!-- Sidebar -->
